@@ -37,7 +37,7 @@ bool check(char table[][1], char winner[1]) {     // x x x  6 7 8
 	}
 	return flag;
 }
-int play() {
+int play(int count_play) {
 	char table[9][1];
 	char winner[1] = { 0 };
 	for (int i = 0; i < 9; i++) {
@@ -46,7 +46,7 @@ int play() {
 	cout << "Welcome to the new game!\n";
 	read_table(table);
 	int count = 0;
-	bool flag = false;
+	bool flag = (count_play % 2 == 0) ? false : true;
 	while (count < 9) {
 		count++;
 		int X;
@@ -85,13 +85,13 @@ int play() {
 	return 3;
 }
 int main() {
-	int count_first = 0, count_second = 0;
+	int count_first = 0, count_second = 0, count_play = 1;
 	do {
 		cout << "\nif you want to start a new game click: p\nif you want exit click: o ";
 		char a;
 		cin >> a;
 		if (a == 'p') {
-			int a = play();
+			int a = play(count_play);
 			if (a == 1) { count_first++; }
 			else if (a == 2) { count_second++; }
 			else { count_first++; count_second++; }
@@ -104,5 +104,6 @@ int main() {
 		}
 		cout << "\nFirst have " << count_first << " points";
 		cout << "\nSecond have " << count_second << " points";
+		count_play++;
 	} while (true);
 }
