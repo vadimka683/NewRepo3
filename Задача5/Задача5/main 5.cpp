@@ -35,17 +35,31 @@ void pop(bool pimpl[][12]) {
 	cin >> X;
 	cout << "input low border: ";
 	cin >> Y;
+	X--; Y--;
 	int X_1, X_2, Y_1, Y_2;
+	if (X > Y) {
+		swap(X, Y);
+	}
 	X_1 = X / 12;
 	X_2 = X % 12;
 	Y_1 = Y / 12;
 	Y_2 = Y % 12;
 	for (int i = X_1; i <= Y_1; i++) {
-		for (int j = X_2 - 1; j < Y_2; j++) {
-			if (pimpl[i][j]) {
-				cout << "Pop! ";
+		if (Y_2 > X_2) {
+			for (int j = X_2; j <= Y_2; j++) {
+				if (pimpl[i][j]) {
+					cout << "Pop! ";
+				}
+				pimpl[i][j] = false;
 			}
-			pimpl[i][j] = false;
+		}
+		else {
+			for (int j = X_2; j >= Y_2; j--) {
+				if (pimpl[i][j]) {
+					cout << "Pop! ";
+				}
+				pimpl[i][j] = false;
+			}
 		}
 	}
 	cout << "\n";
